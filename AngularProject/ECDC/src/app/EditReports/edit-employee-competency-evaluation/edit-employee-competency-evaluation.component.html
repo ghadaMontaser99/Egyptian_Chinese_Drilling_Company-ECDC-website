@@ -1,0 +1,132 @@
+<div class="container mb-5" style="margin-top: 8%;">
+    <div class="heading_container heading_center d-flex">
+      <h2 class="mx-auto my-4">
+      Edit Employee Competency EvaluationForm 
+      </h2>
+  
+    </div>
+  
+    <div class="row">
+      <form [formGroup]="employeeCompetencyEvaluationForm" id="print-section" (ngSubmit)="submitData()"
+        class="col-md-10 mx-auto d-flex flex-wrap">
+  
+        <table class="table">
+          <tr>
+            <td colspan="2">
+              <div class="form-group" >
+                <label class="form-label" for="rigId" >Rig Number: </label>
+                <select name="rigId" formControlName="rigId" id="rigId" [(ngModel)]="employeeCompetencyEvaluationt.rigId" class="form-select">
+                  <option value="" disabled selected>Choose Rig Number</option>
+                  <option *ngFor="let item of rigList" value="{{item.id}}">Rig - {{item.number}}</option>
+                </select>
+              </div>
+            </td>
+            <td>
+              <div class="form-group   ">
+                <label>Date  :</label>
+                <input id="Date" type="date" formControlName="date" class="form-control"
+                [(ngModel)]="employeeCompetencyEvaluationt.date" [ngModel]="employeeCompetencyEvaluationt.date | date: 'yyyy-MM-dd'" />
+                <!-- <input id="Date" type="date" formControlName="date" class="form-control" [(ngModel)]="employeeCompetencyEvaluationt.date"  /> -->
+                <div *ngIf="date?.invalid && (date?.dirty || date?.touched)">
+                  <small class="text-danger" *ngIf="date?.errors?.['required']">
+                    Date  is required
+                  </small>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <label class="form-label m-0 pb-0">Employee Code : </label>
+              <input list="QHSEmenace" autocomplete="off" [(ngModel)]="employeeCompetencyEvaluationt.employeeCode"formControlName="employeeCode" name="employeeCode" class="form-control" (input)="selectedMenaceTool($event)">
+              <datalist id="pusherCode">
+                <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
+              </datalist>
+            </td>
+            <td>
+              <div class="from-group">
+                <label for="employeePositionName" class="form-label">Employee Position :</label>
+                <input class="form-control"[(ngModel)]="employeeCompetencyEvaluationt.employeePositionName" [value]="Employee_Position" disabled />
+                <input name="employeePositionName" formControlName="employeePositionName" id="employeePositionName"
+                  class="form-control" [(ngModel)]="Employee_Position" hidden />
+              </div>
+            </td>
+            <td>
+              <div class="form-group">
+                <label class="form-label" for="employeeName">Name :</label>
+                <input class="form-control" [(ngModel)]="employeeCompetencyEvaluationt.employeeName" [value]="Employee_Name" disabled />
+                <input name="employeeName" formControlName="employeeName"
+                  id="employeeName" class="form-control" [(ngModel)]="Employee_Name" hidden />
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <div class="from-group  ">
+                <label for="subjectId" class="form-label">Subject :</label>
+                <select name="subjectId" formControlName="subjectId"
+                  id="subjectId" class="form-select"[(ngModel)]="employeeCompetencyEvaluationt.subjectId">
+                  <option value="" disabled selected>Choose Subject</option>
+                  <option *ngFor="let item of subjectList" value="{{item.id}}">{{item.name}}</option>
+                </select>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <div class="form-group  ">
+                <label class="form-label">Description : </label>
+                <textarea class="form-control " formControlName="description" rows="4"
+                id="Description"  name="text" [(ngModel)]="employeeCompetencyEvaluationt.description"></textarea>                 
+                <div *ngIf="description?.invalid && (description?.dirty || description?.touched)">
+                  <small class="text-danger" *ngIf="description?.errors?.['required']"
+                 >
+                    Description is required
+                  </small>
+                </div>
+              </div>
+            </td>
+          </tr>
+  
+  
+          <tr>
+            <td>
+              <label class="form-label m-0 pb-0">QHSE Employee Code: </label>
+              <input list="QHSEmenace" autocomplete="off" [(ngModel)]="QHSE_Code" formControlName="qHSEEmpCode" name="qHSEEmpCode" class="form-control" (input)="selectedMenace($event)">
+              <datalist id="QHSEmenace">
+                <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
+              </datalist>
+            </td>
+            <td>
+              <div class="from-group">
+                <label for="qHSEPositionName" class="form-label">QHSE Position :</label>
+                <input class="form-control" [value]="QHSE_Position" disabled [(ngModel)]="employeeCompetencyEvaluationt.qHSEPositionName"/>
+                <input name="qHSEPositionName" formControlName="qHSEPositionName" id="qHSEPositionName" class="form-control"
+                  [(ngModel)]="QHSE_Position" hidden />
+              </div>
+            </td>
+            <td>
+              <div class="form-group">
+                <label class="form-label" for="qHSEEmpName">Name :</label>
+                <input class="form-control" [value]="QHSE_Name" disabled [(ngModel)]="employeeCompetencyEvaluationt.qHSEEmpName"/>
+                <input name="qHSEEmpName" formControlName="qHSEEmpName" id="qHSEEmpName"
+                  class="form-control" [(ngModel)]="QHSE_Name" hidden />
+              </div>
+            </td>
+          </tr>
+        </table>
+
+
+
+        <input type="submit" [disabled]="employeeCompetencyEvaluationForm.invalid" class="btn btn-success me-3" value="Update" />
+
+        <input routerLink="/PrintEmployeeCompetencyEvaluation" type="submit" class="btn btn-primary" value="Show Data">
+      </form>
+    </div>
+
+    <!-- <input type="submit" [disabled]="employeeCompetencyEvaluationForm.invalid"  class="btn btn-success me-3" value="Submit" /> -->
+
+  </div>
+  
+

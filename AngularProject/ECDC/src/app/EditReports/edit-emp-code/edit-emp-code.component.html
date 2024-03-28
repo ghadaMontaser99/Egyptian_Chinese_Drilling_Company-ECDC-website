@@ -1,0 +1,72 @@
+<div class="container mb-5" style="margin-top: 8%;">
+    <div class="heading_container heading_center d-flex">
+      <h2 class="mx-auto my-4">
+        Edit Employee No
+      </h2>
+  
+    </div>
+  
+    <div class="row">
+      <form [formGroup]="EmpCodeForm" id="print-section" (ngSubmit)="submitData()"
+        class="col-md-10 mx-auto d-flex flex-wrap">
+  
+        <table class="table">
+          <tr>
+            <td>
+              <div class="form-group">
+                <label class="form-label" for="code">Employee No : </label>
+                <input type="number" name="code" formControlName="code" id="code" class="form-control" 
+                [(ngModel)]="EmpCode.code" />
+                <div *ngIf="code?.invalid && (code?.dirty || code?.touched)">
+                  <small class="text-danger" *ngIf="code?.errors?.['required']">
+                    Employee No is required
+                  </small>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="form-group">
+                <label class="form-label" for="name">Employee Name : </label>
+                <input type="text" name="name" formControlName="name" id="name" class="form-control"
+                [(ngModel)]="EmpCode.name" />
+                <div *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+                  <small class="text-danger" *ngIf="name?.errors?.['required']">
+                    Employee Name is required
+                  </small>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td >
+              <div class="form-group">
+                <label class="form-label" for="rigId">Rig Number: </label>
+                <select name="rigId" formControlName="rigId" [(ngModel)]="EmpCode.rigId" id="rigId" class="form-select">
+                  <option value="" disabled selected>Choose Rig Number</option>
+                  <option *ngFor="let item of rigList" value="{{item.id}}">Rig - {{item.number}}</option>
+                </select>
+              </div>
+            </td>
+            <td colspan="2">
+              <div class="from-group  ">
+                <label for="PositionId" class="form-label">Position:</label>
+                <select name="PositionId" formControlName="PositionId"
+                  id="PositionId" class="form-select" [(ngModel)]="EmpCode.positionId">
+                  <option value="" disabled selected>Choose  position Name</option>
+                  <option *ngFor="let item of positonIdList" value="{{item.id}}">{{item.name}}</option>
+                </select>
+              </div>
+            </td> 
+
+         
+          </tr>
+        </table>
+  
+        <input type="submit" [disabled]="EmpCodeForm.invalid" class="btn btn-success me-3" value="Update" />
+        <!-- <input type="submit" class="btn btn-primary me-3" value="Export Data" (click)="Download()" /> -->
+        <input routerLink="/Dashboard/EmpCode" type="submit" class="btn btn-primary" value="Show Data">
+  
+      </form>
+    </div>
+  </div>
+  

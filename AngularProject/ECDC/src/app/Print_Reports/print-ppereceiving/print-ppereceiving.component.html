@@ -1,0 +1,216 @@
+<div class="container mb-5" style="margin-top: 8%;">
+    <div class="heading_container heading_center d-flex">
+        <h2 class="mx-auto my-4">
+            PPE Receiving Report
+
+
+
+        </h2>
+    </div>
+   
+
+    <select class="form-control" (change)="EmpCodeSelected($event)">
+        <option value="" disabled selected>Choose Employee Code And Date</option>
+        <option value="{{code.employeeCode}} / {{code.date|date: 'dd-MM-yyyy' }}" *ngFor="let code of PPEReceiving">
+            EmpCode {{code.employeeCode}} / {{code.date|date: 'dd-MM-yyyy' }}
+        </option>
+    </select>
+
+    <div class="px-4 px-lg-0 m-5" *ngIf="PPEReceivingRecord">
+        <div class="pb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-4 print-section"
+                        *ngFor="let record of PPEReceivingRecord">
+                        <div class="table-responsive">
+                            <table class="border" style="width: 100%;">
+                                <tr>
+                                    <div style="display: flex;">
+                                        <img style="margin-left: 30px;" width="100px"
+                                            src="../../assets/img/ECDC Logo png.png" />
+                                        <label class="form-label mt-3"
+                                            style="font-weight: bolder; font-size: large; color: black; margin-left: 130px;">
+                                            PPE Receiving Report
+                                        </label>
+                                    </div>
+                                </tr>
+                            </table>
+
+                            <div class="col-12">
+                                <table class="table table-bordered" style="margin-bottom: 0;">
+                                    <tbody>
+                                        <tr>
+                                            <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">Rig Number :</span>
+                                                        <span>Rig - {{ record.rigId }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">Date :</span>
+                                                        <span>{{ record.date |date: 'dd-MM-yyyy' }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+
+
+
+                                            <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;"> Employee Code :</span>
+                                                        <span>{{ record.employeeCode }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">QHSE Engineer Code :</span>
+                                                        <span>{{ record.qhseEmpCode }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+
+
+                                            <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">Employee Name :</span>
+                                                        <span>{{ record.employeeName }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+
+
+
+
+                                            <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">QHSE Engineer Name :</span>
+                                                        <span>{{ record.qhseEmpName }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                        <tr>
+
+                                            <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">Employee Position :</span>
+                                                        <span>{{ record.employeePositionName }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+
+
+                                            <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">QHSE Engineer Position:</span>
+                                                        <span>{{ record.qhsePositionName }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+
+                                            <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">Normal Coveralls Size :</span>
+                                                        <span>{{ record.normalCoverallsSize }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+
+
+                                            <td scope="row">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">Thermal Coveralls Size :</span>
+                                                        <span>{{ record.thermalCoverallsSize }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+
+
+                                        <tr>
+                                            <td colspan="2">
+                                                <div class="mb-1">
+                                                    <h6 class="mb-1">
+                                                        <span style="font-weight: bold;">Safety Boots Size :</span>
+                                                        <span>{{ record.safetyBootsSize }}</span>
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="2">
+                                                <span style="font-weight: bold;">PPE :</span>
+                                                <ul *ngFor="let item of record.ppEs">
+                                                    <li>
+                                                        <div class="mb-1">
+                                                            <h6 class="mb-1">
+
+                                                                <span>{{item}}</span>
+                                                            </h6>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="col-12">
+                                <table class="table table-borderless mb-1"
+                                    style="display: flex; align-items: center; justify-content: center;">
+                                    <tbody>
+                                        <tr>
+                                            <td scope="row">
+                                                Issue No. 01
+                                                <br>
+                                                Revision No. 00
+                                            </td>
+                                            <td scope="row">
+                                                Document No. ECDC-QHSE-FM-82
+                                                <br>
+                                                Page 1 / 1
+                                            </td>
+                                            <td scope="row">
+                                                Issue Date: 01/01/2023
+                                                <br>
+                                                Revision Date: 00/00/0000
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- End -->
+                    </div>
+                </div>
+                <input *ngIf="Data" type="submit" class="btn btn-primary my-4" value="Print Data"
+                    (click)="print()" />
+            </div>
+        </div>
+    </div>
+</div>

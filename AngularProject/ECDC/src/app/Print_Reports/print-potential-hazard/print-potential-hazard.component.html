@@ -1,0 +1,200 @@
+<div class="container mb-5" style="margin-top: 8%; overflow: hidden;">
+    <div class="heading_container heading_center d-flex">
+      <h2 class="mx-auto my-4">
+        Potential Hazard Report
+      </h2>
+    </div>
+  
+
+    <select class="form-control" (change)="SelectedRigAndTitle($event)">
+      <option value="" disabled selected>Choose Rig Number And Title</option>
+      <option value="{{potentialHazard.rigId}} / {{potentialHazard.title}}" *ngFor="let potentialHazard of PotentialHazard">
+        Rig - {{potentialHazard.rigId}} / Title :  {{potentialHazard.title}}
+      </option>
+    </select>
+
+  
+    <div class="px-4 px-lg-0 m-5">
+      <div class="pb-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-4 print-section"
+              *ngFor="let record of PotentialHazardRecord">
+              <div class="table-responsive">
+                <table class="border" style="width: 100%;">
+                  <tr>
+                    <div style="display: flex;">
+                      <img style="margin-left: 30px;" width="100px" src="../../assets/img/ECDC Logo png.png" />
+                      <label class="form-label mt-3"
+                        style="font-weight: bolder; font-size: large; color: #c00000; margin-left: 130px;">
+                        ECDC RIG 00 - Potential Hazard Report
+                      </label>
+                    </div>
+                  </tr>
+                  
+                </table>
+               
+  
+                <div class="col-12">
+                  <table class="table table-bordered" style="margin-bottom: 0;">
+                    <tbody>
+                        <tr style="text-align: center; background-color: #ffff00;">
+                            <td colspan="2" > 
+                                <div>
+                                    <label class="form-label" 
+                                      style="font-weight: bolder; font-size: large; color: black;">
+                                      Subject: {{record.title}}
+                                    </label>
+                                  </div>
+                            </td>
+                            
+                          </tr>
+                      <tr>
+                        <td scope="row">
+                          <div class="mb-1">
+                            <h6 class="mb-1">
+                              <span style="font-weight: bold;">Rig Number:</span>
+                              <span>Rig - {{ record.rigId }}</span>
+                            </h6>
+                          </div>
+                        </td>
+                        <td scope="row">
+                          <div class="mb-1">
+                            <h6 class="mb-1">
+                              <span style="font-weight: bold;">Date:</span>
+                              <span>{{ record.date |date: 'dd-MM-yyyy' }}</span>
+                            </h6>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td scope="row">
+                          <div class="mb-1">
+                            <h6 class="mb-1">
+                              <span style="font-weight: bold;">PR - Issue Date: </span>
+                              <span>{{ record.pR_IssueDate|date: 'dd-MM-yyyy' }}</span>
+                            </h6>
+                          </div>
+                        </td>
+                        <td scope="row">
+                            <div class="mb-1">
+                              <h6 class="mb-1">
+                                <span style="font-weight: bold;">Responsibilty:</span>
+                                <span>{{ record.responibilityName }}</span>
+                              </h6>
+                            </div>
+                          </td>
+                      </tr>
+                      <tr>
+                      
+                        <td scope="row">
+                          <div class="mb-1">
+                            <h6 class="mb-1">
+                              <span style="font-weight: bold;">PR No:</span>
+                              <span>{{ record.pR_No }}</span>
+                            </h6>
+                          </div>
+                        </td>
+                        <td scope="row">
+                            <div class="mb-1">
+                              <h6 class="mb-1">
+                                <span style="font-weight: bold;">Status:</span>
+                                <span>{{ record.status }}</span>
+                              </h6>
+                            </div>
+                          </td>
+                      </tr>
+                      <tr>
+                       
+                        <td scope="row" colspan="2">
+                          <div class="mb-1">
+                            <h6 class="mb-1">
+                              <span style="font-weight: bold;">PO No:</span>
+                              <span>{{ record.pO_No }}</span>
+                            </h6>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-12">
+                  <table class="table table-borderless">
+                    <tbody>
+                      <tr>
+                        <td scope="row" class="p-0">
+                          <div class="mb-1">
+                            <h6 class="mb-0">
+                              <span style="font-weight: bold;">Description:</span>
+                              <div class="p-1" style="border: 1px solid black;width: 100%;">
+                                {{ record.description }}
+                              </div>
+                            </h6>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td scope="row" class="p-0">
+                          <div class="mb-1">
+                            <h6 class="mb-0">
+                              <span style="font-weight: bold;">Needed Corrective Action:</span>
+                              <div class="p-1" style="border: 1px solid black;width: 100%;">
+                                {{ record.neededAction }}
+                              </div>
+                            </h6>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td scope="row" class="p-0">
+                          <div class="mb-1">
+                            <h6 class="mb-0">
+                              <span style="font-weight: bold;">Pictures:</span>
+                                <div class="row" >
+                                    <div class="col-4 mx-3 my-3" *ngFor="let imageUrl of record.images" >
+                                        <img  src="http://localhost:5000/HazardIMG/{{imageUrl}}" alt="Image" width="300px" height="250px">
+                                    </div>
+                                  </div>
+                            </h6>
+                          </div>
+                        </td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                 
+                       
+              
+                </div>
+                <div class="col-12">
+                  <table class="table table-borderless mb-1"
+                    style="display: flex; align-items: center; justify-content: center;">
+                    <tbody>
+                      <tr>
+                        <td scope="row">
+                          Issue No. 01
+                          <br>
+                          Revision No. 00
+                        </td>
+                        <td scope="row">
+                          Page 1 / 1
+                        </td>
+                        <td scope="row">
+                          Issue Date: 01/01/2023
+                          <br>
+                          Revision Date: 00/00/0000
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- End -->
+            </div>
+          </div>
+          <input *ngIf="Data" type="submit" class="btn btn-primary my-4" value="Print Data" (click)="print()" />
+        </div>
+      </div>
+    </div>
+  </div>
+  

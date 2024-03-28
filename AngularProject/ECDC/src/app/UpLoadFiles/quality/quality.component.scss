@@ -1,0 +1,21 @@
+/* Style for the file input */
+.custom-file-input {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 20px;
+  }
+  
+  /* Hide the actual file input */
+  input[type="file"] {
+    display: none;
+  }
+  
+  /* Style for the label when hovering over the file input */
+  label:hover {
+    background-color: #2980b9;
+  }

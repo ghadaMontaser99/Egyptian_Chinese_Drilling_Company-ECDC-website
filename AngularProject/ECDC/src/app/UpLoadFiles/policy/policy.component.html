@@ -1,0 +1,55 @@
+<div class="container mb-5" style="margin-top: 8%;">
+    <div class="heading_container heading_center d-flex">
+      <h2 class="mx-auto my-4">
+         Policy
+      </h2>
+    </div>
+    <div class="d-flex justify-content-center my-2">
+      <label for="fileInput" class="custom-file-input">Choose File</label>
+      <input  id="fileInput" type="file" (change)="onFileSelected($event)" />
+ 
+      <button class="btn btn-primary" (click)="onUpload()"><i class="fa-solid fa-upload fa-bounce fs-6"></i></button>
+    </div>
+    <div class="row mt-5">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Files</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let item of policyList | async; let i = index ">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item}}</td>
+                <td><button class="btn btn-danger " (click)="deleteFile(item)"><i
+                  class="fa-solid fa-trash fa-shake fs-6"></i></button>
+              <button class="btn btn-primary ms-3" (click)="downloadFile(item,'PolicyUploadFiles')"><i
+                  class="fa-solid fa-download fa-bounce fs-6"></i></button>
+            </td>
+
+              </tr>
+            </tbody>
+          </table>
+    </div>
+  </div>
+
+
+  <div class="mx-auto mb-3 text-center d-flex align-items-center justify-content-center" *ngIf="countOfPage>1">
+    <button class="btn  btn-outline-primary mx-3" (click)="GetPaginatedUploadFiles(1)">
+      <i class="fa-solid fa-angles-left"></i>
+    </button>
+    <button class="btn  btn-outline-primary me-3" (click)="gotleft()">
+      <i class="fa-solid fa-angle-left"></i>
+    </button>
+
+    <div class="me-3">{{indexofPages}} of {{countOfPage}}</div>
+
+    <button class="btn  btn-outline-primary me-3" (click)="gotoright()">
+      <i class="fa-solid fa-angle-right"></i>
+    </button>
+    <button class="btn  btn-outline-primary me-3" (click)="GetPaginatedUploadFiles(countOfPage)">
+      <i class="fa-solid fa-angles-right"></i>
+    </button>
+  </div>

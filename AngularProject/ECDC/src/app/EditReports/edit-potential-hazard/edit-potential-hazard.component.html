@@ -1,0 +1,181 @@
+<div class="container mb-5" style="margin-top: 8%;">
+    <div class="heading_container heading_center d-flex">
+      <h2 class="mx-auto my-4">
+        Edit Potential Hazard Report
+      </h2>
+  
+    </div>
+  
+    <div class="row">
+      <form [formGroup]="PotentialHazardForm" id="print-section" (ngSubmit)="submitData()"
+        class="col-md-10 mx-auto d-flex flex-wrap">
+  
+        <table class="table">
+          <tr>
+            <td colspan="2">
+              <div class="form-group">
+                <label class="form-label" for="rigId">Rig Number: </label>
+                <select name="rigId" [ngModel]="PotentialHazard.rigId" formControlName="rigId" id="rigId" class="form-select">
+                  <option value="" disabled selected>Choose Rig Number</option>
+                  <option *ngFor="let item of rigList" value="{{item.id}}">Rig - {{item.number}}</option>
+                </select>
+              </div>
+            </td>
+            <td>
+              <div class="form-group   ">
+                <label>Date :</label>
+                <input id="Date" type="date" [ngModel]="PotentialHazard.date | date: 'yyyy-MM-dd'" formControlName="date" class="form-control" />
+                <div *ngIf="date?.invalid && (date?.dirty || date?.touched)">
+                  <small class="text-danger" *ngIf="date?.errors?.['required']">
+                    Date is required
+                  </small>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+                <div class="form-group   ">
+                  <label>PR-IssueDate :</label>
+                  <input id="pR_IssueDate" type="date" [ngModel]="PotentialHazard.pR_IssueDate | date: 'yyyy-MM-dd'" formControlName="pR_IssueDate" class="form-control" />
+                  <div *ngIf="pR_IssueDate?.invalid && (pR_IssueDate?.dirty || pR_IssueDate?.touched)">
+                    <small class="text-danger" *ngIf="pR_IssueDate?.errors?.['required']">
+                        PR-IssueDate is required
+                    </small>
+                  </div>
+                </div>
+              </td>
+              <td colspan="3">
+                <div class="form-group">
+                  <label class="form-label" for="responibilityId">Responsibility : </label>
+                  <select name="responibilityId" [ngModel]="PotentialHazard.responsibilityId
+                  " formControlName="responibilityId" id="responibilityId"
+                    class="form-select">
+                    <option value="" disabled selected>Choose Responsibility</option>
+                    <option *ngFor="let item of ResponsibiltyList" value="{{item.id}}">{{item.name}}</option>
+                  </select>
+                </div>
+              </td>
+            
+          </tr>
+  
+          <tr>
+            <td>
+                <div class="form-group   ">
+                  <label> PR No :</label>
+                  <input id=" pR_No" type="number" [ngModel]="PotentialHazard.pR_No" formControlName="pR_No" class="form-control" />
+                  <div *ngIf="pR_No?.invalid && (pR_No?.dirty || pR_No?.touched)">
+                    <small class="text-danger" *ngIf="pR_No?.errors?.['required']">
+                      PR No is required
+                    </small>
+                  </div>
+                </div>
+              </td>
+              <td colspan="3">
+                <div class="form-group ">
+                  <label class="form-label">Status: </label>
+                  <select name="status" formControlName="status" [ngModel]="PotentialHazard.status" id="status" class="form-select">
+                    <option value="" disabled selected>Choose Status</option>
+                    <option value="Open">Open</option>
+                    <option value="Closed">Closed</option>
+                  </select>
+                </div>
+              </td>
+          </tr>
+  
+          <tr>
+            <td>
+                <div class="form-group   ">
+                  <label> PO No :</label>
+                  <input id=" pO_No" type="number" [ngModel]="PotentialHazard.pO_No" formControlName="pO_No" class="form-control" />
+                  <div *ngIf="pO_No?.invalid && (pO_No?.dirty || pO_No?.touched)">
+                    <small class="text-danger" *ngIf="pO_No?.errors?.['required']">
+                      PO No is required
+                    </small>
+                  </div>
+                </div>
+              </td>
+              <td colspan="2">
+              <div class="form-group   ">
+                <label> Title :</label>
+                <input id=" title" type="text" [ngModel]="PotentialHazard.title" formControlName="title" class="form-control" />
+                <div *ngIf="title?.invalid && (title?.dirty || title?.touched)">
+                  <small class="text-danger" *ngIf="title?.errors?.['required']">
+                    Title is required
+                  </small>
+                </div>
+              </div>
+            </td>
+        
+          </tr>
+  
+          <tr>
+            <td colspan="3">
+                <label for="description">Description:</label>
+                <textarea class="form-control " [ngModel]="PotentialHazard.description" formControlName="description" rows="4" id="Description"
+                  name="text"></textarea>
+                <div
+                  *ngIf="description?.invalid && (description?.dirty || description?.touched)">
+                  <small class="text-danger" *ngIf="description?.errors?.['required']">
+                    Description is required
+                  </small>
+                </div>
+              </td>
+          </tr>
+  
+          <tr>
+            <td colspan="3">
+                <label for="neededAction">Needed Corrective Action:</label>
+                <textarea class="form-control" [ngModel]="PotentialHazard.neededAction" formControlName="neededAction" rows="4" id="neededAction"
+                  name="text"></textarea>
+                <div
+                  *ngIf="neededAction?.invalid && (neededAction?.dirty || neededAction?.touched)">
+                  <small class="text-danger" *ngIf="neededAction?.errors?.['required']">
+                    Needed Corrective Action is required
+                  </small>
+                </div>
+              </td>
+          </tr>
+  
+          
+  
+          
+         
+          
+        
+    
+          <tr>
+            <td colspan="3">
+              <div class="form-group">
+                <label class="form-label">Photos : </label>
+                <input type="file" formControlName="images" name="images" class="form-control"
+                  (change)="GetImagePath($event)" multiple #fileInput/>
+                <div *ngIf="images?.invalid && (images?.dirty || images?.touched)">
+                  <small class="text-danger" *ngIf="images?.errors?.['required']">
+                    Photos is required
+                  </small>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+
+            
+            <td>
+            <div class="row" >
+                <div *ngFor="let imageUrl of PotentialHazard.images" class="col-4 mx-2 my-2">
+                    <img src="http://localhost:5000/HazardIMG/{{imageUrl}}" alt="Image" width="100%" height="auto">
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+  
+  
+        <input type="submit" [disabled]="PotentialHazardForm.invalid" class="btn btn-success me-3" value="Update" />
+        <input routerLink="/PrintPotentialHazard" type="submit" class="btn btn-primary" value="Show Data">
+  
+      </form>
+    </div>
+  </div>
+  

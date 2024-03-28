@@ -1,0 +1,32 @@
+<div class="container" style="margin: 8% 0; min-height: 63vh;">
+    <div class="heading_container heading_center d-flex">
+      <h2 class="mx-auto my-4">
+        Potential Hazard Charts
+      </h2>
+  
+    </div>
+    <div class="mb-5">
+      <label for="month" class="form-label">Year</label>
+      <select name="month" id="month" class="form-select" (change)="onChange($event)">
+        <option value="" disabled selected>Choose Year</option>
+        <option value="{{item}}" *ngFor="let item of YearsList">{{item}}</option>
+        
+      </select>
+    </div>
+  
+    <div id="divChart" #divChart *ngIf="temp">
+      <div class="mb-5" id="chart1">
+        <p class="display-6 text-center">All Rigs With Potential Hazard</p>
+        <canvas id="myChart"></canvas>
+      </div>
+       <div class="mb-5" id="chart2">
+        <p class="display-6 text-center">Status Open</p>
+        <canvas id="myChart2"></canvas>
+      </div> 
+       <div id="chart3">
+        <p class="display-6 text-center">Status Closed</p>
+        <canvas id="myChart3"></canvas>
+      </div> 
+    </div>
+  </div>
+  

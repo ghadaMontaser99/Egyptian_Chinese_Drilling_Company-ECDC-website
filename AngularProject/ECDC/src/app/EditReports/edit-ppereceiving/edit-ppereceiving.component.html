@@ -1,0 +1,138 @@
+<div class="container mb-5" style="margin-top: 8%;">
+    <div class="heading_container heading_center d-flex">
+      <h2 class="mx-auto my-4">
+        Edit PPE Receiving Report
+      </h2>
+    </div>
+    <div class="row">
+      <form [formGroup]="PPEReceivingForm" id="print-section" (ngSubmit)="submitData()"
+        class="col-md-10 mx-auto d-flex flex-wrap">
+        <table class="table">
+          <tr>
+            <td colspan="2">
+              <div class="form-group">
+                <label class="form-label" for="rigId">Rig Number: </label>
+                <select name="rigId" formControlName="rigId" id="rigId" class="form-select" [(ngModel)]="pPEReceiving.rigId">
+                  <option value="" disabled selected>Choose Rig Number</option>
+                  <option *ngFor="let item of rigList" value="{{item.id}}">Rig - {{item.number}}</option>
+                </select>
+              </div>
+            </td>
+            <td>
+              <div class="form-group   ">
+                <label>Date :</label>
+                <input id="Date" type="date" formControlName="date" class="form-control" [ngModel]="pPEReceiving.date| date: 'yyyy-MM-dd'"/>
+                <div *ngIf="date?.invalid && (date?.dirty || date?.touched)">
+                  <small class="text-danger" *ngIf="date?.errors?.['required']">
+                    Date is required
+                  </small>
+                </div>
+              </div>
+            </td>
+          </tr>
+  
+          <tr>
+            <td>
+              <label class="form-label m-0 pb-0">Employee Code : </label>
+              <input list="QHSEmenace" [(ngModel)]="QHSE_Code" autocomplete="off" formControlName="employeeCode" name="employeeCode"
+                class="form-control" (input)="selectedMenaceEmployee($event)" >
+              <datalist id="employeeCode">
+                <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
+              </datalist>
+            </td>
+            <td>
+              <div class="from-group">
+                <label for="employeePositionName" class="form-label">Employee Position :</label>
+                <input class="form-control"  [value]="Employee_Position" disabled />
+                <input name="employeePositionName" formControlName="employeePositionName" id="employeePositionName"
+                  class="form-control" [(ngModel)]="Employee_Position" hidden />
+              </div>
+            </td>
+            <td>
+              <div class="form-group">
+                <label class="form-label" for="employeeName">Employee Name :</label>
+                <input class="form-control" [value]="Employee_Name"  disabled />
+                <input name="employeeName" formControlName="employeeName" id="employeeName" class="form-control"
+                  [(ngModel)]="Employee_Name" hidden />
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td >
+                <label>PPE : </label>
+                <div *ngFor="let item of PPEList; let i = index">
+                  <label>
+                    <input value="{{item.id}}" type="checkbox" (change)="toggleSelection(item)"
+                    [checked]="isPPESelected(item.id)" />
+                    {{ item.name }}
+                  </label>
+                </div>
+                
+            </td>
+  
+            <td >
+         
+              <div  class="form-group">
+                <label for="normalCoverallsSize">Normal Coveralls Size :</label>
+                <input  class="form-control" id="normalCoverallsSize" [disabled]="!NormalCoveralls" [value]="pPEReceiving.normalCoverallsSize" />
+                <input  formControlName="normalCoverallsSize" name="normalCoverallsSize"
+                class="form-control" hidden />
+                <div *ngIf="normalCoverallsSize?.invalid && (normalCoverallsSize?.dirty || normalCoverallsSize?.touched)">
+                </div>
+              </div>
+  
+              <div class="form-group">
+                <label for="thermalCoverallsSize">Thermal Coveralls Size :</label>
+                <input class="form-control" [disabled]="!ThermalCoveralls" id="thermalCoverallsSize" [value]="pPEReceiving.thermalCoverallsSize"  />
+                <input  formControlName="thermalCoverallsSize" name="thermalCoverallsSize"
+                  class="form-control" hidden id="eee"/>
+                <div
+                  *ngIf="thermalCoverallsSize?.invalid && (thermalCoverallsSize?.dirty || thermalCoverallsSize?.touched)">
+                </div>
+              </div>
+  
+              <div class="form-group">
+                <label for="safetyBootsSize">Safety Boots Size:</label>
+                <input 
+                  class="form-control" [disabled]="!SafetyBoots" id="safetyBootsSize"  [value]="pPEReceiving.safetyBootsSize" />
+                <input type="text" formControlName="safetyBootsSize" name="safetyBootsSize"
+                class="form-control" hidden />
+                <div *ngIf="safetyBootsSize?.invalid && (safetyBootsSize?.dirty || safetyBootsSize?.touched)"></div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+                <label class="form-label m-0 pb-0">QHSE Employee Code: </label>
+                <input list="QHSEmenace" [(ngModel)]="QHSE_Code" autocomplete="off" formControlName="qhseEmpCode" name="qhseEmpCode" class="form-control" (input)="selectedMenaceQSHE($event)">
+                <datalist id="QHSEmenace">
+                  <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
+                </datalist>
+              </td>
+              <td>
+                <div class="from-group">
+                  <label for="qhsePositionName" class="form-label">QHSE Position :</label>
+                  <input class="form-control" [value]="QHSE_Position" disabled />
+                  <input name="qhsePositionName" formControlName="qhsePositionName" id="qhsePositionName" class="form-control"
+                    [(ngModel)]="QHSE_Position" hidden />
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <label class="form-label" for="qhseEmpName">Name :</label>
+                  <input class="form-control" [value]="QHSE_Name" disabled />
+                  <input name="qhseEmpName" formControlName="qhseEmpName" id="qhseEmpName"
+                    class="form-control" [(ngModel)]="QHSE_Name" hidden />
+                </div>
+              </td>
+          </tr>
+        </table>
+  
+  
+        <input type="submit"  class="btn btn-success me-3" value="Update" />
+        <input type="submit" class="btn btn-primary me-3" value="Export Data" (click)="Download()" />
+        <input routerLink="/PrintPPEReceiving" type="submit" class="btn btn-primary" value="Show Data">
+  
+      </form>
+    </div>
+  </div>

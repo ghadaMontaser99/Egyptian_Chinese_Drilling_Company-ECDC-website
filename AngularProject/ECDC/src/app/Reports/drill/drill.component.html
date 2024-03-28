@@ -1,0 +1,481 @@
+<div class="container mb-5" style="margin-top: 8%;">
+  <div class="heading_container heading_center d-flex">
+    <h2 class="mx-auto my-4">
+      Drills
+    </h2>
+
+  </div>
+
+  <div class="row">
+    <form [formGroup]="drillForm" id="print-section" (ngSubmit)="submitData()"
+      class="col-md-10 mx-auto d-flex flex-wrap">
+
+      <table class="table">
+        <tr>
+          <td colspan="2">
+            <div class="form-group">
+              <label class="form-label" for="rigId">Rig Number: </label>
+              <select name="rigId" formControlName="rigId" id="rigId" class="form-select">
+                <option value="" disabled selected>Choose Rig Number</option>
+                <option *ngFor="let item of rigList" value="{{item.id}}">Rig - {{item.number}}</option>
+              </select>
+            </div>
+          </td>
+          <td colspan="2">
+            <div class="form-group">
+              <label>Date :</label>
+              <input id="Date" type="date" formControlName="date" class="form-control" />
+              <div *ngIf="date?.invalid && (date?.dirty || date?.touched)">
+                <small class="text-danger" *ngIf="date?.errors?.['required']">
+                  Date is required
+                </small>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div class="form-group">
+              <label>Time Completed :</label>
+              <input type="text" min="0" step="0.01" name="timeCompleted" formControlName="timeCompleted"
+                class="form-control" placeholder="HH:mm:ss" [(ngModel)]="TimeCompleted" (input)="getDiff()" />
+              <div *ngIf="timeCompleted?.invalid && (timeCompleted?.dirty || timeCompleted?.touched)">
+                <small class="text-danger" *ngIf="timeCompleted?.errors?.['required']">
+                  Time Completed is required
+                </small>
+                <small class="text-danger" *ngIf="timeInitiated?.errors?.['pattern']">
+                  Time Completed isn't valid
+                  <br>
+                  ex:HH:mm:ss
+                </small>
+              </div>
+            </div>
+          </td>
+
+          <td colspan="2">
+            <div class="form-group   ">
+              <label> Time Initiated :</label>
+              <input type="text" min="0" step="0.01" name="timeInitiated" formControlName="timeInitiated"
+                class="form-control" placeholder="HH:mm:ss" [(ngModel)]="TimeInitiated" (input)="getDiff()">
+              <div *ngIf="timeInitiated?.invalid && (timeInitiated?.dirty || timeInitiated?.touched)">
+                <small class="text-danger" *ngIf="timeInitiated?.errors?.['required']">
+                  Time Initiated is required
+                </small>
+                <small class="text-danger" *ngIf="timeInitiated?.errors?.['pattern']">
+                  Time Initiated isn't valid
+                  <br>
+                  ex:HH:mm:ss
+                </small>
+              </div>
+            </div>
+          </td>
+
+        </tr>
+
+        <tr>
+          <td colspan="2">
+
+            <div class="from-group">
+              <label for="duration" class="form-label"> Duration Minutes :</label>
+              <input class="form-control" [value]="DutartionEquip" disabled />
+              <input name="duration" formControlName="duration" id="duration" class="form-control"
+                [(ngModel)]="DutartionEquip" hidden>
+
+
+            </div>
+
+
+          </td>
+
+          <td colspan="2">
+            <div class="form-group">
+              <label class="form-label" for="drillTypeId">Drill Types : </label>
+              <select name="drillTypeId" formControlName="drillTypeId" id="drillTypeId" class="form-select">
+                <option value="" disabled selected>Choose Drill Type</option>
+                <option *ngFor="let item of drillTypeList" value="{{item.id}}">{{item.name}}</option>
+              </select>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <label for="drillScenario">Drill Scenario:</label>
+            <textarea class="form-control " formControlName="drillScenario" rows="4" id="drillScenario"
+              name="text"></textarea>
+            <div *ngIf="drillScenario?.invalid && (drillScenario?.dirty || drillScenario?.touched)">
+              <small class="text-danger" *ngIf="drillScenario?.errors?.['required']">
+                Drill Scenario is required
+              </small>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="3">
+            <label for="emergencyEquipmentUsed">Emergency Equipment Used:</label>
+            <textarea class="form-control " formControlName="emergencyEquipmentUsed" rows="4"
+              id="emergencyEquipmentUsed" name="text"></textarea>
+            <div
+              *ngIf="emergencyEquipmentUsed?.invalid && (emergencyEquipmentUsed?.dirty || emergencyEquipmentUsed?.touched)">
+              <small class="text-danger" *ngIf="emergencyEquipmentUsed?.errors?.['required']">
+                Emergency Equipment Used is required
+              </small>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center py-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                Emergency response Team Memebers:
+              </span>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <label class="form-label m-0 pb-0">Emp.No: </label>
+            <input list="QHSEmenace" autocomplete="off" formControlName="teamMemeberCode" name="teamMemeberCode"
+              class="form-control" (input)="selectedMenaceTeamMemeber($event)">
+            <datalist id="teamMemeberCode">
+              <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
+            </datalist>
+          </td>
+          <td>
+            <div class="from-group">
+              <label for="teamMemeberPosition" class="form-label"> Position :</label>
+              <input class="form-control" [value]="TeamMemeber_Position" disabled />
+              <input name="teamMemeberPosition" formControlName="teamMemeberPosition" id="teamMemeberPosition"
+                class="form-control" [(ngModel)]="TeamMemeber_Position" hidden />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="teamMemeberName">Name :</label>
+              <input class="form-control" [value]="TeamMemeber_Name" disabled />
+              <input name="teamMemeberName" formControlName="teamMemeberName" id="teamMemeberName" class="form-control"
+                [(ngModel)]="TeamMemeber_Name" hidden />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <!-- <label class="form-label m-0 pb-0">Emp.No: </label> -->
+            <input list="QHSEmenace" autocomplete="off" formControlName="teamMemeberCode1" name="teamMemeberCode1"
+              class="form-control" (input)="selectedMenaceTeamMemeber1($event)">
+            <datalist id="teamMemeberCode1">
+              <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
+            </datalist>
+          </td>
+          <td>
+            <div class="from-group">
+              <!-- <label for="teamMemeberPosition" class="form-label"> Position :</label> -->
+              <input class="form-control" [value]="TeamMemeber1_Position" disabled />
+              <input name="teamMemeberPosition1" formControlName="teamMemeberPosition1" id="teamMemeberPosition1"
+                class="form-control" [(ngModel)]="TeamMemeber1_Position" hidden />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <!-- <label class="form-label" for="teamMemeberName">Name :</label> -->
+              <input class="form-control" [value]="TeamMemeber1_Name" disabled />
+              <input name="teamMemeberName1" formControlName="teamMemeberName1" id="teamMemeberName1"
+                class="form-control" [(ngModel)]="TeamMemeber1_Name" hidden />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <!-- <label class="form-label m-0 pb-0">Emp.No: </label> -->
+            <input list="QHSEmenace" autocomplete="off" formControlName="teamMemeberCode2" name="teamMemeberCode2"
+              class="form-control" (input)="selectedMenaceTeamMemeber2($event)">
+            <datalist id="teamMemeberCode2">
+              <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
+            </datalist>
+          </td>
+          <td>
+            <div class="from-group">
+              <!-- <label for="teamMemeberPosition" class="form-label"> Position :</label> -->
+              <input class="form-control" [value]="TeamMemeber2_Position" disabled />
+              <input name="teamMemeberPosition2" formControlName="teamMemeberPosition2" id="teamMemeberPosition2"
+                class="form-control" [(ngModel)]="TeamMemeber2_Position" hidden />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <!-- <label class="form-label" for="teamMemeberName">Name :</label> -->
+              <input class="form-control" [value]="TeamMemeber2_Name" disabled />
+              <input name="teamMemeberName2" formControlName="teamMemeberName2" id="teamMemeberName2"
+                class="form-control" [(ngModel)]="TeamMemeber2_Name" hidden />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <!-- <label class="form-label m-0 pb-0">Emp.No: </label> -->
+            <input list="QHSEmenace" autocomplete="off" formControlName="teamMemeberCode3" name="teamMemeberCode3"
+              class="form-control" (input)="selectedMenaceTeamMemeber3($event)">
+            <datalist id="teamMemeberCode3">
+              <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
+            </datalist>
+          </td>
+          <td>
+            <div class="from-group">
+              <!-- <label for="teamMemeberPosition" class="form-label"> Position :</label> -->
+              <input class="form-control" [value]="TeamMemeber3_Position" disabled />
+              <input name="teamMemeberPosition3" formControlName="teamMemeberPosition3" id="teamMemeberPosition3"
+                class="form-control" [(ngModel)]="TeamMemeber3_Position" hidden />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <!-- <label class="form-label" for="teamMemeberName">Name :</label> -->
+              <input class="form-control" [value]="TeamMemeber3_Name" disabled />
+              <input name="teamMemeberName3" formControlName="teamMemeberName3" id="teamMemeberName3"
+                class="form-control" [(ngModel)]="TeamMemeber3_Name" hidden />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <!-- <label class="form-label m-0 pb-0">Emp.No: </label> -->
+            <input list="QHSEmenace" autocomplete="off" formControlName="teamMemeberCode4" name="teamMemeberCode4"
+              class="form-control" (input)="selectedMenaceTeamMemeber4($event)">
+            <datalist id="teamMemeberCode4">
+              <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
+            </datalist>
+          </td>
+          <td>
+            <div class="from-group">
+              <!-- <label for="teamMemeberPosition" class="form-label"> Position :</label> -->
+              <input class="form-control" [value]="TeamMemeber4_Position" disabled />
+              <input name="teamMemeberPosition4" formControlName="teamMemeberPosition4" id="teamMemeberPosition4"
+                class="form-control" [(ngModel)]="TeamMemeber4_Position" hidden />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <!-- <label class="form-label" for="teamMemeberName">Name :</label> -->
+              <input class="form-control" [value]="TeamMemeber4_Name" disabled />
+              <input name="teamMemeberName4" formControlName="teamMemeberName4" id="teamMemeberName4"
+                class="form-control" [(ngModel)]="TeamMemeber4_Name" hidden />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <!-- <label class="form-label m-0 pb-0">Emp.No: </label> -->
+            <input list="QHSEmenace" autocomplete="off" formControlName="teamMemeberCode5" name="teamMemeberCode5"
+              class="form-control" (input)="selectedMenaceTeamMemeber5($event)">
+            <datalist id="teamMemeberCode5">
+              <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
+            </datalist>
+          </td>
+          <td>
+            <div class="from-group">
+              <!-- <label for="teamMemeberPosition" class="form-label"> Position :</label> -->
+              <input class="form-control" [value]="TeamMemeber5_Position" disabled />
+              <input name="teamMemeberPosition5" formControlName="teamMemeberPosition5" id="teamMemeberPosition5"
+                class="form-control" [(ngModel)]="TeamMemeber5_Position" hidden />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <!-- <label class="form-label" for="teamMemeberName">Name :</label> -->
+              <input class="form-control" [value]="TeamMemeber5_Name" disabled />
+              <input name="teamMemeberName5" formControlName="teamMemeberName5" id="teamMemeberName5"
+                class="form-control" [(ngModel)]="TeamMemeber5_Name" hidden />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <!-- <label class="form-label m-0 pb-0">Emp.No: </label> -->
+            <input list="QHSEmenace" autocomplete="off" formControlName="teamMemeberCode6" name="teamMemeberCode6"
+              class="form-control" (input)="selectedMenaceTeamMemeber6($event)">
+            <datalist id="teamMemeberCode6">
+              <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
+            </datalist>
+          </td>
+          <td>
+            <div class="from-group">
+              <!-- <label for="teamMemeberPosition" class="form-label"> Position :</label> -->
+              <input class="form-control" [value]="TeamMemeber6_Position" disabled />
+              <input name="teamMemeberPosition6" formControlName="teamMemeberPosition6" id="teamMemeberPosition6"
+                class="form-control" [(ngModel)]="TeamMemeber6_Position" hidden />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <!-- <label class="form-label" for="teamMemeberName">Name :</label> -->
+              <input class="form-control" [value]="TeamMemeber6_Name" disabled />
+              <input name="teamMemeberName6" formControlName="teamMemeberName6" id="teamMemeberName6"
+                class="form-control" [(ngModel)]="TeamMemeber6_Name" hidden />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <!-- <label class="form-label m-0 pb-0">Emp.No: </label> -->
+            <input list="QHSEmenace" autocomplete="off" formControlName="teamMemeberCode7" name="teamMemeberCode7"
+              class="form-control" (input)="selectedMenaceTeamMemeber7($event)">
+            <datalist id="teamMemeberCode7">
+              <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
+            </datalist>
+          </td>
+          <td>
+            <div class="from-group">
+              <!-- <label for="teamMemeberPosition" class="form-label"> Position :</label> -->
+              <input class="form-control" [value]="TeamMemeber7_Position" disabled />
+              <input name="teamMemeberPosition7" formControlName="teamMemeberPosition7" id="teamMemeberPosition7"
+                class="form-control" [(ngModel)]="TeamMemeber7_Position" hidden />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <!-- <label class="form-label" for="teamMemeberName">Name :</label> -->
+              <input class="form-control" [value]="TeamMemeber7_Name" disabled />
+              <input name="teamMemeberName7" formControlName="teamMemeberName7" id="teamMemeberName7"
+                class="form-control" [(ngModel)]="TeamMemeber7_Name" hidden />
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="3">
+            <label for="deficienciesPoints">Deficiencies Points:</label>
+            <textarea class="form-control " formControlName="deficienciesPoints" rows="4" id="deficienciesPoints"
+              name="text"></textarea>
+            <div *ngIf="deficienciesPoints?.invalid && (deficienciesPoints?.dirty || deficienciesPoints?.touched)">
+              <small class="text-danger" *ngIf="deficienciesPoints?.errors?.['required']">
+                Deficiencies Points is required
+              </small>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="3">
+            <label for="effectivenessPoints">Effectiveness Points:</label>
+            <textarea class="form-control " formControlName="effectivenessPoints" rows="4" id="effectivenessPoints"
+              name="text"></textarea>
+            <div *ngIf="effectivenessPoints?.invalid && (effectivenessPoints?.dirty || effectivenessPoints?.touched)">
+              <small class="text-danger" *ngIf="effectivenessPoints?.errors?.['required']">
+                Effectiveness Points is required
+              </small>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="3">
+            <label for="recommendations">Recommendations:</label>
+            <textarea class="form-control " formControlName="recommendations" rows="4" id="recommendations"
+              name="text"></textarea>
+            <div *ngIf="recommendations?.invalid && (recommendations?.dirty || recommendations?.touched)">
+              <small class="text-danger" *ngIf="recommendations?.errors?.['required']">
+                Recommendations is required
+              </small>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="4" class="text-center py-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                QHSE Engineer:
+              </span>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <label class="form-label m-0 pb-0">Emp.No: </label>
+            <input list="QHSEmenace" autocomplete="off" formControlName="qhseEmpCode" name="qhseEmpCode"
+              class="form-control" (input)="selectedMenace($event)">
+            <datalist id="QHSEmenace">
+              <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
+            </datalist>
+          </td>
+          <td>
+            <div class="from-group">
+              <label for="qhsePositionName" class="form-label">Position :</label>
+              <input class="form-control" [value]="QHSE_Position" disabled />
+              <input name="qhsePositionName" formControlName="qhsePositionName" id="qhsePositionName"
+                class="form-control" [(ngModel)]="QHSE_Position" hidden />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="qhseEmpName">Name :</label>
+              <input class="form-control" [value]="QHSE_Name" disabled />
+              <input name="qhseEmpName" formControlName="qhseEmpName" id="qhseEmpName" class="form-control"
+                [(ngModel)]="QHSE_Name" hidden />
+            </div>
+          </td>
+        </tr>
+
+
+        <tr>
+          <td colspan="4" class="text-center py-4">
+            <div style="width: 100%; height: 20px; border-bottom: 1px solid dimgray; text-align: center">
+              <span style="background-color: #F1F1F1; padding: 0 10px;color: dimgray;">
+                S.T.P / N.P:
+              </span>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <label class="form-label m-0 pb-0">Emp.No: </label>
+            <input list="QHSEmenace" autocomplete="off" formControlName="stpCode" name="stpCode" class="form-control"
+              (input)="selectedMenaceSTP($event)">
+            <datalist id="stpCode">
+              <option *ngFor="let menace of QHSECodeList">{{menace.code}} </option>
+            </datalist>
+          </td>
+          <td>
+            <div class="from-group">
+              <label for="stpPositionName" class="form-label"> Position :</label>
+              <input class="form-control" [value]="STP_Position" disabled />
+              <input name="stpPositionName" formControlName="stpPositionName" id="stpPositionName" class="form-control"
+                [(ngModel)]="STP_Position" hidden />
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label class="form-label" for="stpName">Name :</label>
+              <input class="form-control" [value]="STP_Name" disabled />
+              <input name="stpName" formControlName="stpName" id="stpName" class="form-control" [(ngModel)]="STP_Name"
+                hidden />
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="3">
+            <div class="form-group">
+              <label class="form-label">Photos : </label>
+              <input type="file" formControlName="images" name="images" class="form-control"
+                (change)="GetImagePath($event)" multiple #fileInput />
+              <div *ngIf="images?.invalid && (images?.dirty || images?.touched)">
+                <small class="text-danger" *ngIf="images?.errors?.['required']">
+                  Photos is required
+                </small>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <input type="submit" class="btn btn-success me-3" value="Submit" />
+      <input type="submit" class="btn btn-primary me-3" value="Export Data" (click)="Download()" />
+      <input routerLink="/PrintDrill" type="submit" class="btn btn-primary" value="Show Data">
+
+    </form>
+  </div>
+</div>

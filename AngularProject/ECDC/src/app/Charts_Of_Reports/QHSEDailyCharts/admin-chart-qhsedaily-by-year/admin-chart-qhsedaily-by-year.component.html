@@ -1,0 +1,314 @@
+<div class="container" style="margin: 8% 0;">
+    <div class="heading_container heading_center d-flex">
+      <h2 class="mx-auto my-4">
+        QHSE Statics Compare With All Rigs By Year
+      </h2>
+  
+    </div>
+   
+      <div class="col-md-11">
+        <select name="Year" id="Year" class="form-select" (change)="SelectedYearr($event)">
+          <option value="" disabled selected>Choose Year</option>
+          <option value="{{item}}" *ngFor="let item of YearsList">{{item}}</option>  
+        </select>
+      </div>
+    
+    </div>
+    <div class="col-md-10" id="divChart" #divChart *ngIf="temp">
+        <div class="table-responsive">
+          <table id="tableId" class="table mt-3 col-md-12 table-bordered" style=" margin: auto;">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Total Man Power Hours</th>
+                <th>PTSM</th>
+                <th>Drills</th>
+                <th>Stop Cards</th>
+                <th>TotalPTW</th>
+                <th>Leadership Visits</th>
+                <th>Quiz</th>
+                <th>Safety Alert</th>
+                <th>Monthly Inspection</th>
+                <th>Weekly Inspection</th>
+                <th>Days Since Last LTI</th>
+                <th>Recordable Accident</th>
+                <th>Non-Recordable Accident</th>
+                <th>Safety Induction</th>
+              </tr>
+            </thead>
+            <tbody>
+        
+              <tr class="table-light">
+                <td>Rig-1</td>
+                <td>{{QHSEDailyRecord.totalManPowerHoursList[0]}}</td>
+                <td>{{QHSEDailyRecord.ptsmRecordsList[0]}}</td>
+                <td>{{QHSEDailyRecord.drillsRecordsList[0]}}</td>
+                <td>{{QHSEDailyRecord.stopCardsRecordsList[0]}}</td>
+                <td>{{QHSEDailyRecord.totalPTWList[0]}}</td>
+                <td>{{QHSEDailyRecord.leadershipVisitsList[0]}}</td>
+                <td>{{QHSEDailyRecord.quizCrewNumberList[0]}}</td>
+                <td>{{QHSEDailyRecord.safetyAlertCrewNumberList[0]}}</td>
+                <td>{{QHSEDailyRecord.monthlyInspectionList[0]}}</td>
+                <td>{{QHSEDailyRecord.weeklyInspectionList[0]}}</td>
+                <td>{{QHSEDailyRecord.daysSinceLastLTIList[0]}}</td>
+                <td>{{QHSEDailyRecord.recordableAccidentList[0]}}</td>
+                <td>{{QHSEDailyRecord.nonRecordableAccidentList[0]}}</td>
+                <td>{{QHSEDailyRecord.safetyInductionList[0]}}</td>
+        
+              </tr>
+              <tr class="table-light">
+                <td>Rig-2</td>
+                <td>{{QHSEDailyRecord.totalManPowerHoursList[1]}}</td>
+                <td>{{QHSEDailyRecord.ptsmRecordsList[1]}}</td>
+                <td>{{QHSEDailyRecord.drillsRecordsList[1]}}</td>
+                <td>{{QHSEDailyRecord.stopCardsRecordsList[1]}}</td>
+                <td>{{QHSEDailyRecord.totalPTWList[1]}}</td>
+                <td>{{QHSEDailyRecord.leadershipVisitsList[1]}}</td>
+                <td>{{QHSEDailyRecord.quizCrewNumberList[1]}}</td>
+                <td>{{QHSEDailyRecord.safetyAlertCrewNumberList[1]}}</td>
+                <td>{{QHSEDailyRecord.monthlyInspectionList[1]}}</td>
+                <td>{{QHSEDailyRecord.weeklyInspectionList[1]}}</td>
+                <td>{{QHSEDailyRecord.daysSinceLastLTIList[1]}}</td>
+                <td>{{QHSEDailyRecord.recordableAccidentList[1]}}</td>
+                <td>{{QHSEDailyRecord.nonRecordableAccidentList[1]}}</td>
+                <td>{{QHSEDailyRecord.safetyInductionList[1]}}</td>
+              </tr>
+              <tr class="table-light">
+                <td>Rig-3</td>
+                <td>{{QHSEDailyRecord.totalManPowerHoursList[2]}}</td>
+                <td>{{QHSEDailyRecord.ptsmRecordsList[2]}}</td>
+                <td>{{QHSEDailyRecord.drillsRecordsList[2]}}</td>
+                <td>{{QHSEDailyRecord.stopCardsRecordsList[2]}}</td>
+
+                <td>{{QHSEDailyRecord.totalPTWList[2]}}</td>
+                <td>{{QHSEDailyRecord.leadershipVisitsList[2]}}</td>
+                <td>{{QHSEDailyRecord.quizCrewNumberList[2]}}</td>
+                <td>{{QHSEDailyRecord.safetyAlertCrewNumberList[2]}}</td>
+                <td>{{QHSEDailyRecord.monthlyInspectionList[2]}}</td>
+                <td>{{QHSEDailyRecord.weeklyInspectionList[2]}}</td>
+                <td>{{QHSEDailyRecord.daysSinceLastLTIList[2]}}</td>
+                <td>{{QHSEDailyRecord.recordableAccidentList[2]}}</td>
+                <td>{{QHSEDailyRecord.nonRecordableAccidentList[2]}}</td>
+                <td>{{QHSEDailyRecord.safetyInductionList[2]}}</td>
+              </tr>
+              <tr class="table-light">
+                <td>Rig-4</td>
+                <td>{{QHSEDailyRecord.totalManPowerHoursList[3]}}</td>
+                <td>{{QHSEDailyRecord.ptsmRecordsList[3]}}</td>
+                <td>{{QHSEDailyRecord.drillsRecordsList[3]}}</td>
+                <td>{{QHSEDailyRecord.stopCardsRecordsList[3]}}</td>
+
+                <td>{{QHSEDailyRecord.totalPTWList[3]}}</td>
+                <td>{{QHSEDailyRecord.leadershipVisitsList[3]}}</td>
+                <td>{{QHSEDailyRecord.quizCrewNumberList[3]}}</td>
+                <td>{{QHSEDailyRecord.safetyAlertCrewNumberList[3]}}</td>
+                <td>{{QHSEDailyRecord.monthlyInspectionList[3]}}</td>
+                <td>{{QHSEDailyRecord.weeklyInspectionList[3]}}</td>
+                <td>{{QHSEDailyRecord.daysSinceLastLTIList[3]}}</td>
+                <td>{{QHSEDailyRecord.recordableAccidentList[3]}}</td>
+                <td>{{QHSEDailyRecord.nonRecordableAccidentList[3]}}</td>
+                <td>{{QHSEDailyRecord.safetyInductionList[3]}}</td>
+              </tr>
+              <tr class="table-light">
+                <td>Rig-5</td>
+                <td>{{QHSEDailyRecord.totalManPowerHoursList[4]}}</td>
+                <td>{{QHSEDailyRecord.ptsmRecordsList[4]}}</td>
+                <td>{{QHSEDailyRecord.drillsRecordsList[4]}}</td>
+                <td>{{QHSEDailyRecord.stopCardsRecordsList[4]}}</td>
+
+                <td>{{QHSEDailyRecord.totalPTWList[4]}}</td>
+                <td>{{QHSEDailyRecord.leadershipVisitsList[4]}}</td>
+                <td>{{QHSEDailyRecord.quizCrewNumberList[4]}}</td>
+                <td>{{QHSEDailyRecord.safetyAlertCrewNumberList[4]}}</td>
+                <td>{{QHSEDailyRecord.monthlyInspectionList[4]}}</td>
+                <td>{{QHSEDailyRecord.weeklyInspectionList[4]}}</td>
+                <td>{{QHSEDailyRecord.daysSinceLastLTIList[4]}}</td>
+                <td>{{QHSEDailyRecord.recordableAccidentList[4]}}</td>
+                <td>{{QHSEDailyRecord.nonRecordableAccidentList[4]}}</td>
+                <td>{{QHSEDailyRecord.safetyInductionList[4]}}</td>
+              </tr>
+              <tr class="table-light">
+                <td>Rig-6</td>
+                <td>{{QHSEDailyRecord.totalManPowerHoursList[5]}}</td>
+                <td>{{QHSEDailyRecord.ptsmRecordsList[5]}}</td>
+                <td>{{QHSEDailyRecord.drillsRecordsList[5]}}</td>
+                <td>{{QHSEDailyRecord.stopCardsRecordsList[5]}}</td>
+
+                <td>{{QHSEDailyRecord.totalPTWList[5]}}</td>
+                <td>{{QHSEDailyRecord.leadershipVisitsList[5]}}</td>
+                <td>{{QHSEDailyRecord.quizCrewNumberList[5]}}</td>
+                <td>{{QHSEDailyRecord.safetyAlertCrewNumberList[5]}}</td>
+                <td>{{QHSEDailyRecord.monthlyInspectionList[5]}}</td>
+                <td>{{QHSEDailyRecord.weeklyInspectionList[5]}}</td>
+                <td>{{QHSEDailyRecord.daysSinceLastLTIList[5]}}</td>
+                <td>{{QHSEDailyRecord.recordableAccidentList[5]}}</td>
+                <td>{{QHSEDailyRecord.nonRecordableAccidentList[5]}}</td>
+                <td>{{QHSEDailyRecord.safetyInductionList[5]}}</td>
+              </tr>
+              <tr class="table-light">
+                <td>Rig-7</td>
+                <td>{{QHSEDailyRecord.totalManPowerHoursList[6]}}</td>
+                <td>{{QHSEDailyRecord.ptsmRecordsList[6]}}</td>
+                <td>{{QHSEDailyRecord.drillsRecordsList[6]}}</td>
+                <td>{{QHSEDailyRecord.stopCardsRecordsList[6]}}</td>
+
+                <td>{{QHSEDailyRecord.totalPTWList[6]}}</td>
+                <td>{{QHSEDailyRecord.leadershipVisitsList[6]}}</td>
+                <td>{{QHSEDailyRecord.quizCrewNumberList[6]}}</td>
+                <td>{{QHSEDailyRecord.safetyAlertCrewNumberList[6]}}</td>
+                <td>{{QHSEDailyRecord.monthlyInspectionList[6]}}</td>
+                <td>{{QHSEDailyRecord.weeklyInspectionList[6]}}</td>
+                <td>{{QHSEDailyRecord.daysSinceLastLTIList[6]}}</td>
+                <td>{{QHSEDailyRecord.recordableAccidentList[6]}}</td>
+                <td>{{QHSEDailyRecord.nonRecordableAccidentList[6]}}</td>
+                <td>{{QHSEDailyRecord.safetyInductionList[6]}}</td>
+              </tr>
+              <tr class="table-light">
+                <td>Rig-9</td>
+                <td>{{QHSEDailyRecord.totalManPowerHoursList[7]}}</td>
+                <td>{{QHSEDailyRecord.ptsmRecordsList[7]}}</td>
+                <td>{{QHSEDailyRecord.drillsRecordsList[7]}}</td>
+                <td>{{QHSEDailyRecord.stopCardsRecordsList[7]}}</td>
+
+                <td>{{QHSEDailyRecord.totalPTWList[7]}}</td>
+                <td>{{QHSEDailyRecord.leadershipVisitsList[7]}}</td>
+                <td>{{QHSEDailyRecord.quizCrewNumberList[7]}}</td>
+                <td>{{QHSEDailyRecord.safetyAlertCrewNumberList[7]}}</td>
+                <td>{{QHSEDailyRecord.monthlyInspectionList[7]}}</td>
+                <td>{{QHSEDailyRecord.weeklyInspectionList[7]}}</td>
+                <td>{{QHSEDailyRecord.daysSinceLastLTIList[7]}}</td>
+                <td>{{QHSEDailyRecord.recordableAccidentList[7]}}</td>
+                <td>{{QHSEDailyRecord.nonRecordableAccidentList[7]}}</td>
+                <td>{{QHSEDailyRecord.safetyInductionList[7]}}</td>
+              </tr>
+              <tr class="table-light">
+                <td>Rig-10</td>
+                <td>{{QHSEDailyRecord.totalManPowerHoursList[8]}}</td>
+                <td>{{QHSEDailyRecord.ptsmRecordsList[8]}}</td>
+                <td>{{QHSEDailyRecord.drillsRecordsList[8]}}</td>
+                <td>{{QHSEDailyRecord.stopCardsRecordsList[8]}}</td>
+
+                <td>{{QHSEDailyRecord.totalPTWList[8]}}</td>
+                <td>{{QHSEDailyRecord.leadershipVisitsList[8]}}</td>
+                <td>{{QHSEDailyRecord.quizCrewNumberList[8]}}</td>
+                <td>{{QHSEDailyRecord.safetyAlertCrewNumberList[8]}}</td>
+                <td>{{QHSEDailyRecord.monthlyInspectionList[8]}}</td>
+                <td>{{QHSEDailyRecord.weeklyInspectionList[8]}}</td>
+                <td>{{QHSEDailyRecord.daysSinceLastLTIList[8]}}</td>
+                <td>{{QHSEDailyRecord.recordableAccidentList[8]}}</td>
+                <td>{{QHSEDailyRecord.nonRecordableAccidentList[8]}}</td>
+                <td>{{QHSEDailyRecord.safetyInductionList[8]}}</td>
+              </tr>
+              <tr class="table-light">
+                <td>Rig-810</td>
+                <td>{{QHSEDailyRecord.totalManPowerHoursList[9]}}</td>
+                <td>{{QHSEDailyRecord.ptsmRecordsList[9]}}</td>
+                <td>{{QHSEDailyRecord.drillsRecordsList[9]}}</td>
+                <td>{{QHSEDailyRecord.stopCardsRecordsList[9]}}</td>
+
+                <td>{{QHSEDailyRecord.totalPTWList[9]}}</td>
+                <td>{{QHSEDailyRecord.leadershipVisitsList[9]}}</td>
+                <td>{{QHSEDailyRecord.quizCrewNumberList[9]}}</td>
+                <td>{{QHSEDailyRecord.safetyAlertCrewNumberList[9]}}</td>
+                <td>{{QHSEDailyRecord.monthlyInspectionList[9]}}</td>
+                <td>{{QHSEDailyRecord.weeklyInspectionList[9]}}</td>
+                <td>{{QHSEDailyRecord.daysSinceLastLTIList[9]}}</td>
+                <td>{{QHSEDailyRecord.recordableAccidentList[9]}}</td>
+                <td>{{QHSEDailyRecord.nonRecordableAccidentList[9]}}</td>
+                <td>{{QHSEDailyRecord.safetyInductionList[9]}}</td>
+              </tr>
+              <tr class="table-light">
+                <td>Rig-815</td>
+                <td>{{QHSEDailyRecord.totalManPowerHoursList[10]}}</td>
+                <td>{{QHSEDailyRecord.ptsmRecordsList[10]}}</td>
+                <td>{{QHSEDailyRecord.drillsRecordsList[10]}}</td>
+                <td>{{QHSEDailyRecord.stopCardsRecordsList[10]}}</td>
+
+                <td>{{QHSEDailyRecord.totalPTWList[10]}}</td>
+                <td>{{QHSEDailyRecord.leadershipVisitsList[10]}}</td>
+                <td>{{QHSEDailyRecord.quizCrewNumberList[10]}}</td>
+                <td>{{QHSEDailyRecord.safetyAlertCrewNumberList[10]}}</td>
+                <td>{{QHSEDailyRecord.monthlyInspectionList[10]}}</td>
+                <td>{{QHSEDailyRecord.weeklyInspectionList[10]}}</td>
+                <td>{{QHSEDailyRecord.daysSinceLastLTIList[10]}}</td>
+                <td>{{QHSEDailyRecord.recordableAccidentList[10]}}</td>
+                <td>{{QHSEDailyRecord.nonRecordableAccidentList[10]}}</td>
+                <td>{{QHSEDailyRecord.safetyInductionList[10]}}</td>
+              </tr>
+        
+        
+            </tbody>
+               
+                <!-- <input type="submit" style="text-align: center;"  class="btn btn-primary mt-3 me-4" value="Export Data" (click)="exportExcel()" /> -->
+              </table>
+              <div class="d-flex justify-content-center mt-3">
+                <input type="submit" class="btn btn-primary" value="Export Data" (click)="exportExcel()" />
+              </div>
+        </div>
+   
+
+      <div  id="chart1">
+        <p class="display-6 text-center">QHSE Statics Compare With All Rigs By Total Man Power Hours</p>
+        <canvas id="myChart"></canvas>
+       
+      </div>
+
+      <div class="mb-5 mt-5" id="chart2">
+        <p class="display-6 text-center">QHSE Statics Compare With All Rigs By Drills</p>
+        <canvas id="myChart2"></canvas>
+      </div>
+      <div class="mb-5 mt-5" id="chart13">
+        <p class="display-6 text-center">QHSE Statics Compare With All Rigs By Stop Cards</p>
+        <canvas id="myChart13"></canvas>
+      </div>
+      <div class="mb-5" id="chart3">
+        <p class="display-6 text-center">QHSE Statics Compare With All Rigs By PTSM</p>
+        <canvas id="myChart3"></canvas>
+      </div>
+      <div class="mb-5" id="chart4">
+        <p class="display-6 text-center">QHSE Statics Compare With All Rigs By Total PTW</p>
+        <canvas id="myChart4"></canvas>
+      </div>
+      <div class="mb-5" id="chart5">
+        <p class="display-6 text-center">QHSE Statics Compare With All Rigs By Leadership Visits</p>
+        <canvas id="myChart5"></canvas>
+      </div>
+      <div class="mb-5" id="chart6">
+        <p class="display-6 text-center">QHSE Statics Compare With All Rigs By Quiz</p>
+        <canvas id="myChart6"></canvas>
+      </div>
+      <div class="mb-5" id="chart7">
+        <p class="display-6 text-center">QHSE Statics Compare With All Rigs By Safety Alert</p>
+        <canvas id="myChart7"></canvas>
+      </div>
+      <div class="mb-5" id="chart8">
+        <p class="display-6 text-center">QHSE Statics Compare With All Rigs By Monthly Inspection</p>
+        <canvas id="myChart8"></canvas>
+      </div>
+      <div class="mb-5" id="chart9">
+        <p class="display-6 text-center">QHSE Statics Compare With All Rigs By Weekly Inspection</p>
+        <canvas id="myChart9"></canvas>
+      </div>
+      <div class="mb-5" id="chart13">
+        <p class="display-6 text-center">QHSE Statics Compare With All Rigs By Days Since Last LTI</p>
+        <canvas id="myChart13"></canvas>
+      </div>
+      <div class="mb-5" id="chart10">
+        <p class="display-6 text-center">QHSE Statics Compare With All Rigs By Recordable Accident</p>
+        <canvas id="myChart10"></canvas>
+      </div>
+      <div class="mb-5" id="chart11">
+        <p class="display-6 text-center">QHSE Statics Compare With All Rigs By Non-Recordable Accident</p>
+        <canvas id="myChart11"></canvas>
+      </div>
+      <div class="mb-5" id="chart12">
+        <p class="display-6 text-center">QHSE Statics Compare With All Rigs By Safety Induction</p>
+        <canvas id="myChart12"></canvas>
+      </div>
+        
+
+    </div>
+
+  
+
+  

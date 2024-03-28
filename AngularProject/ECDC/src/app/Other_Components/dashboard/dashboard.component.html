@@ -1,0 +1,180 @@
+<div class="container mb-5" style="margin-top: 8%;">
+  <div class="heading_container heading_center d-flex">
+    <h2 class="mx-auto my-4">
+      Dashboard
+    </h2>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card p-3 mb-2">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h3 class="heading"> Total Man Hours </h3>
+            <h5 class="heading"> Yearly Hours </h5>
+          </div>
+          <div class="d-flex align-items-center justify-content-between text-center">
+            <div class="me-3">
+              <h3> {{TotalManHours}} </h3>
+              <!-- <a routerLink="/BopTable">Show Data</a> -->
+            </div>
+            <div>
+              <i class="fa-regular fa-clock fa-spin h1" style="color: #000000;"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="card p-3 mb-2">
+        <div>
+         
+          <div class="d-flex align-items-center justify-content-between text-center">
+            <div class="me-3">
+              <h3 class="heading">Days Since Last LTI </h3>
+            </div>
+            <div>
+              <img style="margin-left: 30px;color: #012970;" width="50px" src="../../assets/img/accident.ico" />
+            </div>
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+           
+                <th scope="col" style="width: 33%;">Rig Number</th>
+                <th scope="col" style="width: 33%;">Days</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of DaysSinceNoLTIList">
+               
+                <td style="width: 33%;">Rig- {{item.rigId}}</td>
+                <td style="width: 33%;">{{item.days}}</td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <div class="mt-5">
+            <div class="mt-3">
+              <span class="text1">
+                <a routerLink="/Dashboard/DaysSinceNoLTI">Show Data</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card p-3 mb-2">
+        <div>
+          <h3 class="heading"> Incidents </h3>
+          <h5> {{accidentcount}} Record </h5>
+          <div class="mt-5">
+            <div class="mt-3">
+              <span class="text1">
+                <a routerLink="/Dashboard/Accidents">Show Data</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card p-3 mb-2">
+        <div>
+          <h3 class="heading"> Stop Cards </h3>
+          <h5> {{stopCardcount}} Record </h5>
+          <div class="mt-5">
+            <div class="mt-3">
+              <span class="text1">
+                <a routerLink="/Dashboard/Stopcard">Show Data</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card p-3 mb-2">
+        <div>
+          <h3 class="heading"> Safe Journey Plan </h3>
+          <h5> {{JMPcount}} Record </h5>
+          <div class="mt-5">
+            <div class="mt-3">
+              <span class="text1">
+                <a routerLink="/Dashboard/SJPTable">Show Data</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   
+    <div class="col-md-6">
+      <div class="card p-3 mb-2">
+        <div>
+          <h3 class="heading"> Pre-Tour Safety Meeting </h3>
+          <h5> {{PTSMcount}} Record </h5>
+          <div class="mt-5">
+            <div class="mt-3">
+              <span class="text1">
+                <a routerLink="/Dashboard/PTSM">Show Data</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card p-3 mb-2">
+        <div>
+          <h3 class="heading"> Rig Move Performance Evaluation </h3>
+          <h5> {{rigMovePerformancecount}} Record </h5>
+          <div class="mt-5">
+            <div class="mt-3">
+              <span class="text1">
+                <a routerLink="/RigPerformance">Show Data</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+    
+    <div class="col-md-6">
+      <div class="card p-3 mb-2">
+        <div>
+          <h3 class="heading"> Drills </h3>
+          <h5> {{drillsCount}} Record </h5>
+          <div class="mt-5">
+            <div class="mt-3">
+              <span class="text1">
+                <a routerLink="/Dashboard/Drill">Show Data</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="card p-3 mb-2">
+        <div>
+          <h3 class="heading"> Open Potential Hazards </h3>
+          <h5> {{PotentialHazardCount}} Record </h5>
+          <div class="mt-5">
+            <div class="mt-3">
+              <span class="text1">
+                <a routerLink="/PotentialHazard">Show Data</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a class="mt-3 fs-5" routerLink="/SubDashboard" style="width: 100%; text-align: right;">Sub Dashboard <i
+        class="fa-solid fa-arrow-right fa-fade"></i></a>
+  </div>
+</div>

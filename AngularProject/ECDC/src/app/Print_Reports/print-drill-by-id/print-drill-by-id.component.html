@@ -1,0 +1,313 @@
+<div class="container mb-5" style="margin-top: 8%; overflow: hidden;">
+    <div class="heading_container heading_center d-flex">
+      <h2 class="mx-auto ">
+        Drill Report
+      </h2>
+    </div>
+  
+    
+  
+    <div class="px-4 px-lg-0 m-4" *ngIf="Data">
+      <div class="pb-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 p-3 bg-white rounded shadow-sm mb-4 print-section" >
+              <div class="table-responsive">
+                <table class="border" style="width: 100%;">
+                  <tr>
+                    <div style="display: flex;">
+                      <img style="margin-left: 30px;" width="100px" src="../../assets/img/ECDC Logo png.png" />
+                      <span class="col-12">
+                        <table class="table table-borderless  "
+                          style="display: flex; align-items: center; justify-content: center;">
+                          <tbody style="margin-top: 10px;">
+                            <tr>
+                              <td scope="row" style="font-size: 15px;">
+  
+                                Safe Work Requirement
+                                <br>
+                                Emergency Drill Report
+  
+                              </td>
+                              <td scope="row">
+                                Document Responsibility:
+                                <br>
+                                QHSE
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </span>
+  
+                    </div>
+                  </tr>
+                </table>
+                <div style="text-align: center; margin-top: 10px;">
+                  <label class="form-label " style="font-weight: bolder; font-size: large; color: black;">
+                    Emergency Drill/Exercise Report
+                  </label>
+                </div>
+  
+                <div class="col-12">
+                  <table class="table table-bordered " style="border: 1px solid black;width: 100%;">
+                    <tbody>
+                      <tr>
+                        <td scope="row">
+                          <div class=" ">
+                            <h6 class=" ">
+                              <span>Rig Number :</span>
+                              <span>{{ DrillObj.rigId }}</span>
+                            </h6>
+                          </div>
+                        </td>
+                        <td scope="row">
+                          <div class=" ">
+                            <h6 class=" ">
+                              <span>Drill Type :</span>
+                              <span>{{ DrillObj.drillTypeName }}</span>
+                            </h6>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td scope="row">
+                          <div class=" ">
+                            <h6 class=" ">
+                              <span>Date :</span>
+                              <span>{{ DrillObj.date | date: 'dd-MM-yyyy' }}</span>
+                            </h6>
+                          </div>
+                        </td>
+                        <td scope="row">
+                          <div class=" ">
+                            <h6 class=" ">
+                              <span>Duration:</span>
+                              <span>{{ DrillObj.duration }}</span>
+                            </h6>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td scope="row">
+                          <div class =" ">
+                            <h6 class=" ">
+                              <span>Time Initiated:</span>
+                              <span>{{ DrillObj.timeInitiated }}</span>
+                            </h6>
+                          </div>
+                        </td>
+                        <td scope="row">
+                          <div class=" ">
+                            <h6 class=" ">
+                              <span>Time Completed:</span>
+                              <span>{{ DrillObj.timeCompleted }}</span>
+                            </h6>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+  
+                <div class="col-12">
+                  <table class="table table-borderless">
+                    <tbody>
+                      <tr>
+                        <td scope="row" class="p-0">
+                          <div class="  mt-3">
+                            <h6 class="mb-0">
+                              <span style="font-weight: bold; color: rgb(38, 38, 202); text-decoration: underline;">Drill
+                                Scenario :</span>
+                              <div class="p-1 mt-3" style="border: 1px solid black; max-width: 100%; overflow: hidden;">
+                                <ul>
+                                  <li>
+                                    {{ DrillObj.drillScenario }}
+                                  </li>
+                                </ul>
+                              </div>
+                            </h6>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+  
+                <div class=" ">
+                  <h6 class=" ">
+                    <span style="font-weight: bold; color: rgb(38, 38, 202); text-decoration: underline;">Emergency
+                      Response Team Members "Fire Team & Rescue Team" :</span>
+                  </h6>
+                </div>
+  
+                <div class="col-12 mt-4" style="margin-bottom: 10px;">
+                  <table class="table "
+                    style="font-size: 14px;   width: 100%;">
+                    <div class="table-bordered" style="display: flex;text-align: center; ">
+                      <table class="table" style="border: 1px solid black;">
+                        <tr>
+                          <th>No</th>
+                          <th>Names</th>
+                          <th>Position</th>
+                        </tr>
+                        <tr>
+                          <td>1</td>
+                          <td>{{ DrillObj.teamMemeberName }}</td>
+                          <td>{{ DrillObj.teamMemeberPosition }}</td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>{{ DrillObj.teamMemeberName1 }}</td>
+                          <td>{{ DrillObj.teamMemeberPosition1 }}</td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>{{ DrillObj.teamMemeberName2 }}</td>
+                          <td>{{ DrillObj.teamMemeberPosition2 }}</td>
+                        </tr>
+                        <tr>
+                          <td>4</td>
+                          <td>{{ DrillObj.teamMemeberName3 }}</td>
+                          <td>{{ DrillObj.teamMemeberPosition3 }}</td>
+                        </tr>
+                      </table>
+                      <table class="table"style="border: 1px solid black;">
+                        <tr>
+                          <th>No</th>
+                          <th>Names</th>
+                          <th>Position</th>
+                        </tr>
+                        <tr>
+                          <td>5</td>
+                          <td>{{ DrillObj.teamMemeberName4 }}</td>
+                          <td>{{ DrillObj.teamMemeberPosition4 }}</td>
+                        </tr>
+                        <tr>
+                          <td>6</td>
+                          <td>{{ DrillObj.teamMemeberName5 }}</td>
+                          <td>{{ DrillObj.teamMemeberPosition5 }}</td>
+                        </tr>
+                        <tr>
+                          <td>7</td>
+                          <td>{{ DrillObj.teamMemeberName6 }}</td>
+                          <td>{{ DrillObj.teamMemeberPosition6 }}</td>
+                        </tr>
+                        <tr>
+                          <td>8</td>
+                          <td>{{ DrillObj.teamMemeberName7 }}</td>
+                          <td>{{ DrillObj.teamMemeberPosition7 }}</td>
+                        </tr>
+                      </table>
+                    </div>
+                  </table>
+                </div>
+  
+                <div class="col-12 mt-3">
+                  <table class="table table-borderless">
+                    <tbody>
+                      <tr>
+                        <td scope="row" class="p-0">
+                          <div >
+                            <h6 >
+                              <span style="font-weight: bold; color: rgb(38, 38, 202); text-decoration: underline;">Emergency
+                                Equipment Used :</span>
+                              <div class="mt-3" style="border: 1px solid black; max-width: 100%; overflow: hidden;">
+                                <ul>
+                                  <li>
+                                    {{ DrillObj.emergencyEquipmentUsed }}
+                                  </li>
+                                </ul>
+                              </div>
+                            </h6>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td scope="row" class="p-0">
+                          <div class="  mt-3">
+                            <h6 class="mb-0">
+                              <span style="font-weight: bold; color: rgb(38, 38, 202); text-decoration: underline;">Effectiveness
+                                Points :</span>
+                              <div class="p-1 mt-3" style="border: 1px solid black; max-width: 100%; overflow: hidden;">
+                                <ul>
+                                  <li>
+                                    {{ DrillObj.effectivenessPoints }}
+                                  </li>
+                                </ul>
+                              </div>
+                            </h6>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td scope="row" class="p-0">
+                          <div class="  mt-3">
+                            <h6 class="mb-0">
+                              <span style="font-weight: bold; color: rgb(38, 38, 202); text-decoration: underline;">Deficiencies
+                                Points :</span>
+                              <div class="p-1 mt-3" style="border: 1px solid black; max-width: 100%; overflow: hidden;">
+                                <ul>
+                                  <li>
+                                    {{ DrillObj.deficienciesPoints }}
+                                  </li>
+                                </ul>
+                              </div>
+                            </h6>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td scope="row" class="p-0">
+                          <div class="  mt-3">
+                            <h6 class="mb-0">
+                              <span style="font-weight: bold; color: rgb(38, 38, 202); text-decoration: underline;">Recommendations
+                                :</span>
+                              <div class="p-1 mt-3" style="border: 1px solid black; max-width: 100%; overflow: hidden;">
+                                <ul>
+                                  <li>
+                                    {{ DrillObj.recommendations }}
+                                  </li>
+                                </ul>
+                              </div>
+                            </h6>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+  
+                <div class="col-12 mt-4">
+                  <table class="table table-borderless">
+                    <tbody>
+                      <tr>
+                        <td scope="row" class="p-0">
+                          <div class=" ">
+                            <h6 class="mb-0">
+                              <span style="font-weight: bold; color: rgb(38, 38, 202); text-decoration: underline;">Drill
+                                Scenario Photos:</span>
+                             
+  
+                              <div class="row" >
+                                <div *ngFor="let imageUrl of DrillObj.images" class="col-4 mx-2 my-2">
+                                  <img src="http://localhost:5000/DrillIMG/{{imageUrl}}" alt="Image" width="100%" height="auto">
+                                </div>
+                              </div>
+                          
+                            </h6>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+          <input *ngIf="Data" type="submit" class="btn btn-primary my-4" value="Print Data" (click)="print()" />
+        </div>
+      </div>
+    </div>
+  
+  

@@ -1,0 +1,101 @@
+<div class="container" style="margin: 8% 0;">
+    <div class="heading_container heading_center d-flex">
+      <h2 class="mx-auto my-4">
+        QHSE Statics Compare By Year
+      </h2>
+  
+    </div>
+   
+      <div class="col-md-11">
+        <select name="Year" id="Year" class="form-select" (change)="SelectedYearr($event)">
+          <option value="" disabled selected>Choose Year</option>
+          <option value="{{item}}" *ngFor="let item of YearsList">{{item}}</option>  
+        </select>
+      </div>
+    
+    </div>
+    <div  class="col-md-10" id="divChart" #divChart *ngIf="temp">
+      <div  id="chart1">
+        <canvas id="myChart"></canvas>
+       
+      </div>
+      
+        
+        <table id="tableId" class="table mt-3" style="max-width: 60%;  margin: auto;" >
+          <thead>
+            <tr>
+              <th></th>
+              <th>{{this.SelectedYear}}</th>
+            </tr>
+          </thead>
+          <tbody>
+              
+            <tr class="table-light">
+              <td>Total Man Power Hours</td>
+              <td>{{QHSEDailyRecord.countTotalManPowerHoursYear}}</td>
+            </tr>
+            <tr class="table-light">
+              <td>Stop Cards</td>
+              <td>{{QHSEDailyRecord.countStopCardsYear}}</td>
+            </tr>
+            <tr class="table-light">
+              <td>PTSM</td>
+              <td>{{QHSEDailyRecord.countPTSMYear}}</td>
+            </tr>
+            <tr class="table-light">
+              <td>Drills</td>
+              <td>{{QHSEDailyRecord.countDrillsYear}}</td>
+            </tr>
+            <tr class="table-light">
+              <td>Recordable Accident</td>
+              <td>{{QHSEDailyRecord.countRecordableAccidentYear}}</td>
+            </tr>
+            <tr class="table-light">
+              <td>Non-RecordableAccident</td>
+              <td>{{QHSEDailyRecord.countNonRecordableAccidentYear}}</td>
+            </tr>
+            <tr class="table-light">
+              <td>Safety Induction</td>
+              <td>{{QHSEDailyRecord.countSafetyInductionYear}}</td>
+            </tr>
+
+               <tr class="table-light">
+                <td>Total PTW</td>
+                <td>{{QHSEDailyRecord.countTotalPTWYear}}</td>
+              </tr>
+              <tr class="table-light">
+                <td>Leadership Visits</td>
+                <td>{{QHSEDailyRecord.countLeadershipVisitsYear}}</td>
+              </tr>
+              <tr class="table-light">
+                <td>Quiz</td>
+                <td>{{QHSEDailyRecord.countQuizNumberCrewYear}}</td>
+              </tr>
+              <tr class="table-light">
+                <td>Safety Alert</td>
+                <td>{{QHSEDailyRecord.countSafetyNumberCrewYear}}</td>
+              </tr>
+              <tr class="table-light">
+                <td>Monthly Inspection</td>
+                <td>{{QHSEDailyRecord.countMonthlyInspectionYear}}</td>
+              </tr>
+              <tr class="table-light">
+                <td>Weekly Inspection</td>
+                <td>{{QHSEDailyRecord.countWeeklyInspectionYear}}</td>
+              </tr>
+          
+          </tbody>
+         
+          <input type="submit" style="float: right;"  class="btn btn-primary mt-3 me-4" value="Export Data" (click)="exportExcel()" />
+        </table>
+        
+       
+            
+          
+
+     
+    </div>
+
+  
+
+  

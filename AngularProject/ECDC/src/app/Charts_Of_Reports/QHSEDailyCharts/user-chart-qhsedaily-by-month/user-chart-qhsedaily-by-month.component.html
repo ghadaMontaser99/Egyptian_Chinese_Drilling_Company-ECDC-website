@@ -1,0 +1,151 @@
+<div class="container" style="margin: 8% 0; min-height: 63vh;">
+  <div class="heading_container heading_center d-flex">
+    <h2 class="mx-auto my-4">
+      QHSE Statics Compare By Month
+    </h2>
+
+  </div>
+  <div class="row mb-3 text-center">
+    <div class="col-md-3">
+      <select name="month1" id="month1" class="form-select" (change)="onMonth1Change($event)">
+        <option value="" disabled selected>Choose Month</option>
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <select name="month2" id="month2" class="form-select" (change)="onMonth2Change($event)">
+        <option value="" disabled selected>Choose Month</option>
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <select name="Year" id="Year" class="form-select" (change)="onYearChange($event)">
+        <option value="" disabled selected>Choose Year</option>
+        <option value="{{item}}" *ngFor="let item of YearsList">{{item}}</option>  
+      </select>
+    </div>
+    <div class="col-md-1">
+      <button class="btn btn-primary" (click)="onChange($event)"><i
+          class="fa-solid fa-circle-chevron-right"></i></button>
+    </div>
+  </div>
+  <div id="divChart" #divChart *ngIf="temp">
+    <div class="mb-5" id="chart1">
+      <canvas id="myChart"></canvas>
+     
+    </div>
+    
+      
+      <table id="tableId" class="table mt-3" style="max-width: 60%;  margin: auto;" >
+        <thead>
+          <tr>
+            <th></th>
+            <th>{{this.month1_Name}}</th>
+            <th>{{this.month2_Name}}</th>
+          </tr>
+        </thead>
+        <tbody>
+            
+          <tr class="table-light">
+            <td>Total Man Power Hours</td>
+            <td>{{QHSEDailyRecord.countTotalManPowerHoursMonth1}}</td>
+            <td>{{QHSEDailyRecord.countTotalManPowerHoursMonth2}}</td>
+          </tr>
+          <tr class="table-light">
+            <td>Stop Cards</td>
+            <td>{{QHSEDailyRecord.countStopCardsMonth1}}</td>
+            <td>{{QHSEDailyRecord.countStopCardsMonth2}}</td>
+          </tr>
+          <tr class="table-light">
+            <td>PTSM</td>
+            <td>{{QHSEDailyRecord.countPTSMMonth1}}</td>
+            <td>{{QHSEDailyRecord.countPTSMMonth2}}</td>
+          </tr>
+          <tr class="table-light">
+            <td>Drills</td>
+            <td>{{QHSEDailyRecord.countDrillsMonth1}}</td>
+            <td>{{QHSEDailyRecord.countDrillsMonth2}}</td>
+          </tr>
+          <tr class="table-light">
+            <td>Recordable Accident</td>
+            <td>{{QHSEDailyRecord.countRecordableAccidentMonth1}}</td>
+            <td>{{QHSEDailyRecord.countRecordableAccidentMonth2}}</td>
+          </tr>
+          <tr class="table-light">
+            <td>Non-RecordableAccident</td>
+            <td>{{QHSEDailyRecord.countNonRecordableAccidentMonth1}}</td>
+            <td>{{QHSEDailyRecord.countNonRecordableAccidentMonth2}}</td>
+          </tr>
+          <tr class="table-light">
+            <td>Safety Induction</td>
+            <td>{{QHSEDailyRecord.countSafetyInductionMonth1}}</td>
+            <td>{{QHSEDailyRecord.countSafetyInductionMonth2}}</td>
+          </tr>
+
+             <tr class="table-light">
+              <td>Total PTW</td>
+              <td>{{QHSEDailyRecord.countTotalPTWMonth1}}</td>
+              <td>{{QHSEDailyRecord.countTotalPTWMonth2}}</td>
+            </tr>
+            <tr class="table-light">
+              <td>Leadership Visits</td>
+              <td>{{QHSEDailyRecord.countLeadershipVisitsMonth1}}</td>
+              <td>{{QHSEDailyRecord.countLeadershipVisitsMonth2}}</td>
+            </tr>
+            <tr class="table-light">
+              <td>Quiz</td>
+              <td>{{QHSEDailyRecord.countQuizNumberCrewMonth1}}</td>
+              <td>{{QHSEDailyRecord.countQuizNumberCrewMonth2}}</td>
+            </tr>
+            <tr class="table-light">
+              <td>Safety Alert</td>
+              <td>{{QHSEDailyRecord.countSafetyNumberCrewMonth1}}</td>
+              <td>{{QHSEDailyRecord.countSafetyNumberCrewMonth2}}</td>
+            </tr>
+            <tr class="table-light">
+              <td>Monthly Inspection</td>
+              <td>{{QHSEDailyRecord.countMonthlyInspectionMonth1}}</td>
+              <td>{{QHSEDailyRecord.countMonthlyInspectionMonth2}}</td>
+            </tr>
+            <tr class="table-light">
+              <td>Weekly Inspection</td>
+              <td>{{QHSEDailyRecord.countWeeklyInspectionMonth1}}</td>
+              <td>{{QHSEDailyRecord.countWeeklyInspectionMonth2}}</td>
+            </tr>
+        
+        </tbody>
+       
+        <input type="submit" style="float: right;"  class="btn btn-primary mt-3 me-4" value="Export Data" (click)="exportExcel()" />
+      </table>
+      
+     
+          
+        
+
+   
+  </div>
+
+</div>
+
